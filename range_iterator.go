@@ -13,17 +13,20 @@ func NewRangeIterator(begin, end int) *RangeIterator {
 	return &RangeIterator{
 		begin:   begin,
 		end:     end,
-		current: begin,
+		current: begin - 1,
 	}
 }
 
 func (x *RangeIterator) Next() bool {
 	// 不包含end
-	return x.current < x.end
+	if x.current+1 < x.end {
+		x.current++
+		return true
+	}
+	return false
 }
 
 func (x *RangeIterator) Value() int {
 	r := x.current
-	x.current += 1
 	return r
 }
