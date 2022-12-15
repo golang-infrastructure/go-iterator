@@ -21,6 +21,11 @@ func NewChainIterator[T any](iterators ...Iterator[T]) *ChainIterator[T] {
 
 func (x *ChainIterator[T]) Next() bool {
 
+	// 看下指针当前是否已经指向空了
+	if x.index >= len(x.iterators) {
+		return false
+	}
+
 	// 看下当前指向的迭代器是否还有下一个
 	hasNext := x.iterators[x.index].Next()
 	if hasNext {
