@@ -1,5 +1,6 @@
 package iterator
 
+// ChannelIterator 用于把一个channel封装为iterator
 type ChannelIterator[T any] struct {
 	channel <-chan T
 	hasNext bool
