@@ -8,6 +8,7 @@ type RangeIterator struct {
 
 var _ Iterator[int] = &RangeIterator{}
 
+// NewRangeIterator [begin, end)的左闭右开区间
 func NewRangeIterator(begin, end int) *RangeIterator {
 	return &RangeIterator{
 		begin:   begin,
@@ -17,7 +18,8 @@ func NewRangeIterator(begin, end int) *RangeIterator {
 }
 
 func (x *RangeIterator) Next() bool {
-	return x.current <= x.end
+	// 不包含end
+	return x.current < x.end
 }
 
 func (x *RangeIterator) Value() int {
